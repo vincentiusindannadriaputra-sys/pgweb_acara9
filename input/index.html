@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Input Data Gereja</title>
+</head>
+<body>
+
+    <h2>Form Input Data Gereja</h2>
+
+    <form action="input.php" onsubmit="return validateForm(event)" method="post">
+        <label for="gereja">Nama Gereja:</label><br>
+        <input type="text" id="gereja" name="gereja" value=""><br><br>
+
+        <label for="kalurahan">Kalurahan:</label><br>
+        <input type="text" id="kalurahan" name="kalurahan" value=""><br><br>
+
+        <label for="kapanewon">Kapanewon:</label><br>
+        <input type="text" id="kapanewon" name="kapanewon" value=""><br><br>
+
+        <label for="lat">Latitude:</label><br>
+        <input type="text" id="lat" name="latitude" value=""><br><br>
+
+        <label for="long">Longitude:</label><br>
+        <input type="text" id="long" name="longitude" value=""><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    
+    <p id="informasi" style="color: red; font-weight: bold;"></p>
+
+<script>
+function validateForm(event) {
+    let gereja = document.getElementById("gereja").value.trim();
+    let kalurahan = document.getElementById("kalurahan").value.trim();
+    let kapanewon = document.getElementById("kapanewon").value.trim();
+    let lat = document.getElementById("lat").value.trim();
+    let long = document.getElementById("long").value.trim();
+    
+    let text = "";
+
+    if (gereja === "") {
+        text = "Nama Gereja tidak boleh kosong!";
+    }
+    else if (kalurahan === "") {
+        text = "Nama Kalurahan tidak boleh kosong!";
+    }
+    else if (kapanewon === "") {
+        text = "Nama Kapanewon tidak boleh kosong!";
+    }
+    else if (lat === "" || isNaN(lat)) {
+        text = "Latitude harus berupa angka yang valid!";
+    }
+    else if (long === "" || isNaN(long)) {
+        text = "Longitude harus berupa angka yang valid!";
+    }
+
+    if (text !== "") {
+        document.getElementById("informasi").innerHTML = text;
+        event.preventDefault();
+        return false;
+    }
+    
+    document.getElementById("informasi").innerHTML = "";
+    return true;
+}
+</script>
+
+</body>
+</html>
